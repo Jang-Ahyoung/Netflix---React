@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import styles from './Banner.module.css';
+import axios from '../../service/axios';
+import requests from '../../service/request';
 
 function Banner() {
+    const [movie, setMovie] = useState([]);
+
+    useEffect(() => {
+        async function fetchData(){
+            const request = await axios.get(requests.fetchNetflixOriginals);
+            setMovie(
+                request.data.results[
+                    Math.floor(Math.random() * request.data.results.length - 1)
+                ]
+            );
+            return request;
+        }
+        fetchData();
+    }, []);
+    console.log(movie);
+    console.log(process.env.REACT_APP_TMDB_API_KEY);
+
     function truncate(string,n){
         return string?.length>n 
                ? string.substr(0,n-1)+'...' 
@@ -12,7 +31,7 @@ function Banner() {
             style={{
                 backgroundSize: 'cover',
                 backgroundPosition: 'center center',
-                backgroundImage: `url('https://cdn.mos.cms.futurecdn.net/98GnqFKaUMYU3GG5HxhLWZ.jpg')`
+                backgroundImage: `url('https://image.tmdb.org/t/p/original/${movie?.backdrop_path}')`
             }}>
             <div className={styles.contents}>
                 <h1 className={styles.title}>Movie Name</h1>
