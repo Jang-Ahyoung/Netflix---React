@@ -19,7 +19,6 @@ function Banner() {
         fetchData();
     }, []);
     console.log(movie);
-    console.log(process.env.REACT_APP_TMDB_API_KEY);
 
     function truncate(string,n){
         return string?.length>n 
@@ -31,15 +30,19 @@ function Banner() {
             style={{
                 backgroundSize: 'cover',
                 backgroundPosition: 'center center',
-                backgroundImage: `url('https://image.tmdb.org/t/p/original/${movie?.backdrop_path}')`
+                
+                backgroundImage: 
+                ((movie?.backdrop_path &&`url('https://image.tmdb.org/t/p/original/${movie?.backdrop_path}')`)||
+                (!movie?.backdrop_path &&`url('https://dkr0pu7ej5xex.cloudfront.net/wp-content/uploads/2017/04/24135159/Netflix-Background.jpg')`))
             }}>
             <div className={styles.contents}>
-                <h1 className={styles.title}>Movie Name</h1>
+                <h1 className={styles.title}>{movie?.name || movie?.title || movie?.original_name}</h1>
                 <div className={styles.buttons}>
                     <button className={styles.button}>Play</button>
                     <button className={styles.button}>My List</button>
+                    
                 </div>
-                <h1 className={styles.description}>{truncate(`This is a test description`,150)}</h1>
+                <h1 className={styles.description}>{truncate(movie?.overview,150)}</h1>
             </div>
             <div className={styles.fadeButton}/>
         </div>
