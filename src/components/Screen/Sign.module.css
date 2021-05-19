@@ -1,8 +1,7 @@
 .sign {
   position: relative;
-  transform: translate(0, -10%);
+  transform: translate(0, -15%);
   background-color: rgba(0, 0, 0, 0.85);
-  /* padding: 40px 60px; */
   padding: 70px;
   max-width: 300px;
   margin-left: auto;
