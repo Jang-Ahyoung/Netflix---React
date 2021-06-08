@@ -18,7 +18,7 @@ function Navbar() {
     return (
         <div className={`nav ${show && 'background'}`}>
             <div className='contents'>
-                <img onClick={() => history.push("/")} className='logo' src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png" alt="netflix"></img>
+                <img onClick={() => history.push("/")} className='logo' src="img/netflixLogo.png" alt="netflix"></img>
                 <img onClick={() => history.push("/profile")} className='profile' src="https://pbs.twimg.com/profile_images/1240119990411550720/hBEe3tdn_400x400.png" alt="profile"></img>
             </div>
         </div>
